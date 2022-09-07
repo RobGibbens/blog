@@ -4,6 +4,7 @@ date: 2015-01-09
 tags: xamarin-forms
 ---
 
+{% octicon alert height:24 %}
 > **Note**
 > This blog is _woefully_ out of date, and is here simply as an archive
 
