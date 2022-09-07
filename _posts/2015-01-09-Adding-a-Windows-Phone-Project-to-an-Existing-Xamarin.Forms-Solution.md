@@ -58,19 +58,19 @@ All we need in the *MainPage.xaml* file is the following XAML.
 
 ```xml
 <phone:PhoneApplicationPage
-    x:Class="SuperSuccessfulApp.WinPhone.MainPage"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
-    FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
-    shell:SystemTray.IsVisible="True">
+  x:Class="SuperSuccessfulApp.WinPhone.MainPage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+  xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d"
+  FontFamily="{StaticResource PhoneFontFamilyNormal}"
+  FontSize="{StaticResource PhoneFontSizeNormal}"
+  Foreground="{StaticResource PhoneForegroundBrush}"
+  SupportedOrientations="Portrait" Orientation="Portrait"
+  shell:SystemTray.IsVisible="True">
 </phone:PhoneApplicationPage>
 ```
 
@@ -84,16 +84,16 @@ using Xamarin.Forms;
 
 namespace SuperSuccessfulApp.WinPhone
 {
-    public partial class MainPage : PhoneApplicationPage
-    {
-        public MainPage()
-        {
-            InitializeComponent();
+  public partial class MainPage : PhoneApplicationPage
+  {
+  public MainPage()
+  {
+    InitializeComponent();
 
-            Forms.Init();
-            Content = SuperSuccessfulApp.App.GetMainPage().ConvertPageToUIElement(this);
-        }
-    }
+    Forms.Init();
+    Content = SuperSuccessfulApp.App.GetMainPage().ConvertPageToUIElement(this);
+  }
+  }
 }
 ```
 
