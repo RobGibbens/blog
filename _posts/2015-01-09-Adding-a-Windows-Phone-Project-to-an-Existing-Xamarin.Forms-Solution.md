@@ -1,6 +1,7 @@
 ---
 title: "Adding a Windows Phone Project to an Existing Xamarin.Forms Solution"
 date: 2015-01-09
+tags: xamarin-forms
 ---
 So, you've fired up Xamarin Studio, created a new Xamarin.Forms app for iOS and Android and your app is super successful. Now that the two major platforms are coded and deployed to their respective app stores, you'd like to add Windows Phone as well.  
 
@@ -14,23 +15,23 @@ Xamarin Studio does not support Windows Phone projects, so in order to create a 
 
 At this point, we will only have iOS and Android projects so the first step is to add a Windows Phone project. 
 
-{<1>}![](/content/images/2014/Aug/InitialSolutionExplorer.PNG)
+![](images/InitialSolutionExplorer.PNG)
 
 Right click on the solution and choose **Add New Project**. From the dialog, choose Visual C# -> Store Apps -> Windows Phone Apps -> **Blank App (Windows Phone Silverlight)**
 
-{<2>}![](/content/images/2014/Aug/AddNewProject.PNG)
+![](images/AddNewProject.PNG)
 
 Create the project in the existing solution folder, and give the project the extension *.WinPhone* (this is optional, but adheres to what the Xamarin.Forms wizard would have created).
 
-{<3>}![](/content/images/2014/Aug/ProjectName.PNG)
+![](images/ProjectName.PNG)
 
 Next, we'll get a wizard dialog asking which version of the Windows Phone SDK we want to use. The Xamarin.Forms wizard creates a Windows Phone 8.0 project, so we'll choose that same version here.
 
-{<4>}![](/content/images/2014/Aug/TargetVersion.PNG)
+![](images/TargetVersion.PNG)
 
 This will create the Windows Phone project for us and add it to the solution.
 
-{<5>}![](/content/images/2014/Aug/NewSolutionExplorer.PNG)
+![](images/NewSolutionExplorer.PNG)
 
 
 ####Add Xamarin.Forms####
@@ -39,13 +40,13 @@ Now that the project is created, all we need to do is connect the Windows Phone 
 
 > Install-Package Xamarin.Forms
 
-{<6>}![](/content/images/2014/Aug/Nuget.PNG)
+![](images/Nuget.PNG)
 
-{<7>}![](/content/images/2014/Aug/ContentCopyAlways.PNG)
+![](images/ContentCopyAlways.PNG)
 
 Next, we need to add a reference to our shared code project, which will be either a PCL or a Shared Project. This will allow us to access all of the Xamarin.Forms UI that we have already created.
 
-{<8>}![](/content/images/2014/Aug/AddReference.PNG)
+![](images/AddReference.PNG)
 
 ####Edit MainPage.xaml####
 
