@@ -2,6 +2,9 @@
 title: "Custom UITableViewCells with Xamarin and XIBs"
 date: 2015-01-09
 ---
+> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M13 17.5a1 1 0 11-2 0 1 1 0 012 0zm-.25-8.25a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0v-4.5z"></path><path fill-rule="evenodd" d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752L9.836 3.244zm3.03.751a1 1 0 00-1.732 0L2.168 19.499A1 1 0 003.034 21h17.932a1 1 0 00.866-1.5L12.866 3.994z"></path></svg> **Note**
+> This blog is _woefully_ out of date, and is here simply as an archive
+
 Sometimes when we are creating an iOS app with Xamarin, we choose to forego using the Storyboard designer, and simply create the user interface in C#. This works fine, but when using a **UITableView**, there are times when we want to design the **UITableViewCell** with the designer. Luckily, this is easy enough to do using a single .xib file in Xamarin Studio. 
 
 I have created a sample project in my [Github repo](https://github.com/RobGibbens/XibTableCellDesign) to demonstrate using a *.xib* file to design our cell.
