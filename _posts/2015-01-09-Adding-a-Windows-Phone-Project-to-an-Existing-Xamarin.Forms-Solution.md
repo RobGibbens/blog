@@ -3,6 +3,10 @@ title: "Adding a Windows Phone Project to an Existing Xamarin.Forms Solution"
 date: 2015-01-09
 tags: xamarin-forms
 ---
+
+> **Note**
+> This blog is _woefully_ out of date, and is here simply as an archive
+
 So, you've fired up Xamarin Studio, created a new Xamarin.Forms app for iOS and Android and your app is super successful. Now that the two major platforms are coded and deployed to their respective app stores, you'd like to add Windows Phone as well.  
 
 This is where Xamarin and particularly Xamarin.Forms really shines. It's possible to have your app running on a whole new platform in a matter of minutes.
