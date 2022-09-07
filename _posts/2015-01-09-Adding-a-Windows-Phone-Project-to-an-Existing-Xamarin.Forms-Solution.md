@@ -15,24 +15,23 @@ Xamarin Studio does not support Windows Phone projects, so in order to create a 
 
 At this point, we will only have iOS and Android projects so the first step is to add a Windows Phone project. 
 
-![](assets/InitialSolutionExplorer.PNG)
+![Initial solution explorer](assets/InitialSolutionExplorer.PNG)
 
 Right click on the solution and choose **Add New Project**. From the dialog, choose Visual C# -> Store Apps -> Windows Phone Apps -> **Blank App (Windows Phone Silverlight)**
 
-![](images/AddNewProject.PNG)
+![Add new project](images/AddNewProject.PNG)
 
 Create the project in the existing solution folder, and give the project the extension *.WinPhone* (this is optional, but adheres to what the Xamarin.Forms wizard would have created).
 
-![](images/ProjectName.PNG)
+![Project name](images/ProjectName.PNG)
 
 Next, we'll get a wizard dialog asking which version of the Windows Phone SDK we want to use. The Xamarin.Forms wizard creates a Windows Phone 8.0 project, so we'll choose that same version here.
 
-![](images/TargetVersion.PNG)
+![Target version](images/TargetVersion.PNG)
 
 This will create the Windows Phone project for us and add it to the solution.
 
-![](images/NewSolutionExplorer.PNG)
-
+![New solution explorer](images/NewSolutionExplorer.PNG)
 
 #### Add Xamarin.Forms
 
@@ -40,13 +39,13 @@ Now that the project is created, all we need to do is connect the Windows Phone 
 
 > Install-Package Xamarin.Forms
 
-![](images/Nuget.PNG)
+![Nuget](images/Nuget.PNG)
 
-![](images/ContentCopyAlways.PNG)
+![Content copy always](images/ContentCopyAlways.PNG)
 
 Next, we need to add a reference to our shared code project, which will be either a PCL or a Shared Project. This will allow us to access all of the Xamarin.Forms UI that we have already created.
 
-![](images/AddReference.PNG)
+![Add reference](images/AddReference.PNG)
 
 #### Edit MainPage.xaml
 
@@ -94,6 +93,7 @@ namespace SuperSuccessfulApp.WinPhone
     }
 }
 ```
+
 > Note : Be sure to change the relevant namespaces
 
-At this point, we have a funtioning Windows Phone app, leveraging all of the work that we previously did for iOS and Android. The only remaining tasks would be to implement any custom renderers and/or platform specific interfaces, and add the appropriate icons and images.
+At this point, we have a functioning Windows Phone app, leveraging all of the work that we previously did for iOS and Android. The only remaining tasks would be to implement any custom renderers and/or platform specific interfaces, and add the appropriate icons and images.
