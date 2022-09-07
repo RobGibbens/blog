@@ -42,7 +42,7 @@ private async Task GetRemoteData ()
 
 While this _does_ work, it adds a lot of unnecessary noise to the code.  Instead of adding line after line of analytics tracking to every method, I prefer to get that boilerplate code out of the way, and let the code focus on the problem at hand.
 
-As [I've](http://arteksoftware.com/clean-viewmodels-with-xamarin-forms) [shown](http://arteksoftware.com/end-to-end-mvvm-with-xamarin) [before](http://arteksoftware.com/fody-propertychanged-xamarin-studio), I get a lot of use out of [Fody](https://github.com/Fody/Fody) in my mobile apps. Fody allows us to control the build time compilation and change the outputted assembly.  In this case, we can use Fody's MethodDecorator package to move the Insights tracking logic into a method attribute.
+As [I've](/blog/2015/01/09/Clean-ViewModels-with-Xamarin.Forms) [shown](/blog/2015/01/09/End-to-End-Mvvm-with-Xamarin) [before](/blog/2015/01/05/Fody-PropertyChanged-Xamarin-Studio-Easy-Mvvm), I get a lot of use out of [Fody](https://github.com/Fody/Fody) in my mobile apps. Fody allows us to control the build time compilation and change the outputted assembly.  In this case, we can use Fody's MethodDecorator package to move the Insights tracking logic into a method attribute.
 
 ### Adding Fody
 
@@ -61,7 +61,7 @@ You'll need to add the declaration to the FodyWeavers.xml file as well.
 </Weavers>
 ```
 
-[I wrote up instructions on using Fody with Xamarin Studio](http://arteksoftware.com/fody-propertychanged-xamarin-studio)
+[I wrote up instructions on using Fody with Xamarin Studio](/blog/2015/01/05/Fody-PropertyChanged-Xamarin-Studio-Easy-Mvvm)
 
 ### Create Attribute
 

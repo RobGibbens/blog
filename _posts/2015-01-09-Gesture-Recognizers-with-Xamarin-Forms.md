@@ -21,7 +21,7 @@ using Xamarin.Forms;
 
 namespace XamarinFormsGestureRecognizers
 {
-	public class FancyLabel : Label {}
+  public class FancyLabel : Label {}
 }
 ```
 
@@ -33,25 +33,25 @@ using System;
 
 namespace XamarinFormsGestureRecognizers
 {
-	public static class App
-	{
-		public static Page GetMainPage ()
-		{	
-			var fancyLabel = new FancyLabel {
-				Text = "Hello, Forms!",
-				VerticalOptions = LayoutOptions.CenterAndExpand,
-				HorizontalOptions = LayoutOptions.CenterAndExpand,
-			};
+  public static class App
+  {
+    public static Page GetMainPage ()
+    {  
+      var fancyLabel = new FancyLabel {
+        Text = "Hello, Forms!",
+        VerticalOptions = LayoutOptions.CenterAndExpand,
+        HorizontalOptions = LayoutOptions.CenterAndExpand,
+      };
 
-			var tapGestureRecognizer = new TapGestureRecognizer ();
-			tapGestureRecognizer.Tapped += (sender, e) => Console.WriteLine ("Tapped");
-			fancyLabel.GestureRecognizers.Add (tapGestureRecognizer);
+      var tapGestureRecognizer = new TapGestureRecognizer ();
+      tapGestureRecognizer.Tapped += (sender, e) => Console.WriteLine ("Tapped");
+      fancyLabel.GestureRecognizers.Add (tapGestureRecognizer);
 
-			return new ContentPage { 
-				Content = fancyLabel
-			};
-		}
-	}
+      return new ContentPage { 
+        Content = fancyLabel
+      };
+    }
+  }
 }
 ```
 
@@ -70,13 +70,13 @@ using XamarinFormsGestureRecognizers.iOS;
 
 namespace XamarinFormsGestureRecognizers.iOS
 {
-	public class FancyIosLabelRenderer : LabelRenderer
-	{
-		protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
-		{
-			base.OnElementChanged (e);
-		}
-	}
+  public class FancyIosLabelRenderer : LabelRenderer
+  {
+    protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
+    {
+      base.OnElementChanged (e);
+    }
+  }
 }
 ```
 
@@ -84,50 +84,50 @@ The renderer class itself is a view that wraps the native control. While we coul
 
 ```csharp
 public class FancyIosLabelRenderer : LabelRenderer
-	{
-		UILongPressGestureRecognizer longPressGestureRecognizer;
-		UIPinchGestureRecognizer pinchGestureRecognizer;
-		UIPanGestureRecognizer panGestureRecognizer;
-		UISwipeGestureRecognizer swipeGestureRecognizer;
-		UIRotationGestureRecognizer rotationGestureRecognizer;
+  {
+    UILongPressGestureRecognizer longPressGestureRecognizer;
+    UIPinchGestureRecognizer pinchGestureRecognizer;
+    UIPanGestureRecognizer panGestureRecognizer;
+    UISwipeGestureRecognizer swipeGestureRecognizer;
+    UIRotationGestureRecognizer rotationGestureRecognizer;
 
-		protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
-		{
-			base.OnElementChanged (e);
+    protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
+    {
+      base.OnElementChanged (e);
 
-			longPressGestureRecognizer = new UILongPressGestureRecognizer (() => Console.WriteLine ("Long Press"));
-			pinchGestureRecognizer = new UIPinchGestureRecognizer (() => Console.WriteLine ("Pinch"));
-			panGestureRecognizer = new UIPanGestureRecognizer (() => Console.WriteLine ("Pan"));
-			swipeGestureRecognizer = new UISwipeGestureRecognizer (() => Console.WriteLine ("Swipe"));
-			rotationGestureRecognizer = new UIRotationGestureRecognizer (() => Console.WriteLine ("Rotation"));
+      longPressGestureRecognizer = new UILongPressGestureRecognizer (() => Console.WriteLine ("Long Press"));
+      pinchGestureRecognizer = new UIPinchGestureRecognizer (() => Console.WriteLine ("Pinch"));
+      panGestureRecognizer = new UIPanGestureRecognizer (() => Console.WriteLine ("Pan"));
+      swipeGestureRecognizer = new UISwipeGestureRecognizer (() => Console.WriteLine ("Swipe"));
+      rotationGestureRecognizer = new UIRotationGestureRecognizer (() => Console.WriteLine ("Rotation"));
 
-			if (e.NewElement == null) {
-				if (longPressGestureRecognizer != null) {
-					this.RemoveGestureRecognizer (longPressGestureRecognizer);
-				}
-				if (pinchGestureRecognizer != null) {
-					this.RemoveGestureRecognizer (pinchGestureRecognizer);
-				}
-				if (panGestureRecognizer != null) {
-					this.RemoveGestureRecognizer (panGestureRecognizer);
-				}
-				if (swipeGestureRecognizer != null) {
-					this.RemoveGestureRecognizer (swipeGestureRecognizer);
-				}
-				if (rotationGestureRecognizer != null) {
-					this.RemoveGestureRecognizer (rotationGestureRecognizer);
-				}
-			}
+      if (e.NewElement == null) {
+        if (longPressGestureRecognizer != null) {
+          this.RemoveGestureRecognizer (longPressGestureRecognizer);
+        }
+        if (pinchGestureRecognizer != null) {
+          this.RemoveGestureRecognizer (pinchGestureRecognizer);
+        }
+        if (panGestureRecognizer != null) {
+          this.RemoveGestureRecognizer (panGestureRecognizer);
+        }
+        if (swipeGestureRecognizer != null) {
+          this.RemoveGestureRecognizer (swipeGestureRecognizer);
+        }
+        if (rotationGestureRecognizer != null) {
+          this.RemoveGestureRecognizer (rotationGestureRecognizer);
+        }
+      }
 
-			if (e.OldElement == null) {
-				this.AddGestureRecognizer (longPressGestureRecognizer);
-				this.AddGestureRecognizer (pinchGestureRecognizer);
-				this.AddGestureRecognizer (panGestureRecognizer);
-				this.AddGestureRecognizer (swipeGestureRecognizer);
-				this.AddGestureRecognizer (rotationGestureRecognizer);
-			}
-		}
-	}
+      if (e.OldElement == null) {
+        this.AddGestureRecognizer (longPressGestureRecognizer);
+        this.AddGestureRecognizer (pinchGestureRecognizer);
+        this.AddGestureRecognizer (panGestureRecognizer);
+        this.AddGestureRecognizer (swipeGestureRecognizer);
+        this.AddGestureRecognizer (rotationGestureRecognizer);
+      }
+    }
+  }
 ```
 
 Lastly, we need to be sure that we wire up the custom renderer to look for instances of the **FancyLabel** class.
@@ -149,17 +149,17 @@ using Android.Views;
 
 namespace XamarinFormsGestureRecognizers.Droid
 {
-	public class FancyAndroidLabelRenderer : LabelRenderer
-	{
-		public FancyAndroidLabelRenderer ()
-		{
-		}
+  public class FancyAndroidLabelRenderer : LabelRenderer
+  {
+    public FancyAndroidLabelRenderer ()
+    {
+    }
 
-		protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
-		{
-			base.OnElementChanged (e);
-		}
-	}
+    protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
+    {
+      base.OnElementChanged (e);
+    }
+  }
 }
 ```
 
@@ -171,62 +171,62 @@ using System;
 
 namespace XamarinFormsGestureRecognizers.Droid
 {
-	public class FancyGestureListener : GestureDetector.SimpleOnGestureListener
-	{
-		public override void OnLongPress (MotionEvent e)
-		{
-			Console.WriteLine ("OnLongPress");
-			base.OnLongPress (e);
-		}
+  public class FancyGestureListener : GestureDetector.SimpleOnGestureListener
+  {
+    public override void OnLongPress (MotionEvent e)
+    {
+      Console.WriteLine ("OnLongPress");
+      base.OnLongPress (e);
+    }
 
-		public override bool OnDoubleTap (MotionEvent e)
-		{
-			Console.WriteLine ("OnDoubleTap");
-			return base.OnDoubleTap (e);
-		}
+    public override bool OnDoubleTap (MotionEvent e)
+    {
+      Console.WriteLine ("OnDoubleTap");
+      return base.OnDoubleTap (e);
+    }
 
-		public override bool OnDoubleTapEvent (MotionEvent e)
-		{
-			Console.WriteLine ("OnDoubleTapEvent");
-			return base.OnDoubleTapEvent (e);
-		}
+    public override bool OnDoubleTapEvent (MotionEvent e)
+    {
+      Console.WriteLine ("OnDoubleTapEvent");
+      return base.OnDoubleTapEvent (e);
+    }
 
-		public override bool OnSingleTapUp (MotionEvent e)
-		{
-			Console.WriteLine ("OnSingleTapUp");
-			return base.OnSingleTapUp (e);
-		}
+    public override bool OnSingleTapUp (MotionEvent e)
+    {
+      Console.WriteLine ("OnSingleTapUp");
+      return base.OnSingleTapUp (e);
+    }
 
-		public override bool OnDown (MotionEvent e)
-		{
-			Console.WriteLine ("OnDown");
-			return base.OnDown (e);
-		}
+    public override bool OnDown (MotionEvent e)
+    {
+      Console.WriteLine ("OnDown");
+      return base.OnDown (e);
+    }
 
-		public override bool OnFling (MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-		{
-			Console.WriteLine ("OnFling");
-			return base.OnFling (e1, e2, velocityX, velocityY);
-		}
+    public override bool OnFling (MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
+    {
+      Console.WriteLine ("OnFling");
+      return base.OnFling (e1, e2, velocityX, velocityY);
+    }
 
-		public override bool OnScroll (MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
-		{
-			Console.WriteLine ("OnScroll");
-			return base.OnScroll (e1, e2, distanceX, distanceY);
-		}
+    public override bool OnScroll (MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+    {
+      Console.WriteLine ("OnScroll");
+      return base.OnScroll (e1, e2, distanceX, distanceY);
+    }
 
-		public override void OnShowPress (MotionEvent e)
-		{
-			Console.WriteLine ("OnShowPress");
-			base.OnShowPress (e);
-		}
+    public override void OnShowPress (MotionEvent e)
+    {
+      Console.WriteLine ("OnShowPress");
+      base.OnShowPress (e);
+    }
 
-		public override bool OnSingleTapConfirmed (MotionEvent e)
-		{
-			Console.WriteLine ("OnSingleTapConfirmed");
-			return base.OnSingleTapConfirmed (e);
-		}
-	}
+    public override bool OnSingleTapConfirmed (MotionEvent e)
+    {
+      Console.WriteLine ("OnSingleTapConfirmed");
+      return base.OnSingleTapConfirmed (e);
+    }
+  }
 }
 ```
 
@@ -243,47 +243,47 @@ using Android.Views;
 
 namespace XamarinFormsGestureRecognizers.Droid
 {
-	public class FancyAndroidLabelRenderer : LabelRenderer
-	{
-		private readonly FancyGestureListener _listener;
-		private readonly GestureDetector _detector;
+  public class FancyAndroidLabelRenderer : LabelRenderer
+  {
+    private readonly FancyGestureListener _listener;
+    private readonly GestureDetector _detector;
 
-		public FancyAndroidLabelRenderer ()
-		{
-			_listener = new FancyGestureListener ();
-			_detector = new GestureDetector (_listener);
+    public FancyAndroidLabelRenderer ()
+    {
+      _listener = new FancyGestureListener ();
+      _detector = new GestureDetector (_listener);
 
-		}
+    }
 
-		protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
-		{
-			base.OnElementChanged (e);
+    protected override void OnElementChanged (ElementChangedEventArgs<Label> e)
+    {
+      base.OnElementChanged (e);
 
-			if (e.NewElement == null) {
-				if (this.GenericMotion != null) {
-					this.GenericMotion -= HandleGenericMotion;
-				}
-				if (this.Touch != null) {
-					this.Touch -= HandleTouch;
-				}
-			}
+      if (e.NewElement == null) {
+        if (this.GenericMotion != null) {
+          this.GenericMotion -= HandleGenericMotion;
+        }
+        if (this.Touch != null) {
+          this.Touch -= HandleTouch;
+        }
+      }
 
-			if (e.OldElement == null) {
-				this.GenericMotion += HandleGenericMotion;
-				this.Touch += HandleTouch;
-			}
-		}
+      if (e.OldElement == null) {
+        this.GenericMotion += HandleGenericMotion;
+        this.Touch += HandleTouch;
+      }
+    }
 
-		void HandleTouch (object sender, TouchEventArgs e)
-		{
-			_detector.OnTouchEvent (e.Event);
-		}
+    void HandleTouch (object sender, TouchEventArgs e)
+    {
+      _detector.OnTouchEvent (e.Event);
+    }
 
-		void HandleGenericMotion (object sender, GenericMotionEventArgs e)
-		{
-			_detector.OnTouchEvent (e.Event);
-		}
-	}	
+    void HandleGenericMotion (object sender, GenericMotionEventArgs e)
+    {
+      _detector.OnTouchEvent (e.Event);
+    }
+  }  
 }
 ```
 
