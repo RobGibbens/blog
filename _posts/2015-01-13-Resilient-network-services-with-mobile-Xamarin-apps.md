@@ -15,62 +15,62 @@ We take our devices with us everywhere. We have them at home, at work, and on va
 
 ### Current approach
 
-When we first start writing our Xamarin apps, we probably take the easiest approach in writing our networking code. Maybe we just use Microsoft's HttpClient library to make a call, and then Json.net to deserialize the resulting json. Maybe we go a step further and include some additional libraries as well. You can see this approach in my previous post [End to End Mvvm with Xamarin](http://arteksoftware.com/end-to-end-mvvm-with-xamarin/) where I show a simple implementation of a service client.
+When we first start writing our Xamarin apps, we probably take the easiest approach in writing our networking code. Maybe we just use Microsoft's HttpClient library to make a call, and then Json.net to deserialize the resulting json. Maybe we go a step further and include some additional libraries as well. You can see this approach in my previous post [End to End Mvvm with Xamarin](/blog/2015/01/09/End-to-End-Mvvm-with-Xamarin) where I show a simple implementation of a service client.
 
 ```csharp
 namespace DtoToVM.Services
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Net.Http;
-	using System.Net.Http.Headers;
-	using System.Threading.Tasks;
-	using AutoMapper;
-	using Newtonsoft.Json;
-	using DtoToVM.Dtos;
-	using DtoToVM.Models;
+  using System;
+  using System.Collections.Generic;
+  using System.Linq;
+  using System.Net.Http;
+  using System.Net.Http.Headers;
+  using System.Threading.Tasks;
+  using AutoMapper;
+  using Newtonsoft.Json;
+  using DtoToVM.Dtos;
+  using DtoToVM.Models;
 
-	public class TekConfClient
-	{
-		public async Task<List<Conference>> GetConferences ()
-		{
-			IEnumerable<ConferenceDto> conferenceDtos = Enumerable.Empty<ConferenceDto>();
-			IEnumerable<Conference> conferences = Enumerable.Empty<Conference> ();
+  public class TekConfClient
+  {
+    public async Task<List<Conference>> GetConferences ()
+    {
+      IEnumerable<ConferenceDto> conferenceDtos = Enumerable.Empty<ConferenceDto>();
+      IEnumerable<Conference> conferences = Enumerable.Empty<Conference> ();
 
-			using (var httpClient = CreateClient ()) {
-				var response = await httpClient.GetAsync ("conferences").ConfigureAwait(false);
-				if (response.IsSuccessStatusCode) {
-					var json = await response.Content.ReadAsStringAsync ().ConfigureAwait(false);
-					if (!string.IsNullOrWhiteSpace (json)) {
-						conferenceDtos = await Task.Run (() => 
-							JsonConvert.DeserializeObject<IEnumerable<ConferenceDto>>(json)
-						).ConfigureAwait(false);
+      using (var httpClient = CreateClient ()) {
+        var response = await httpClient.GetAsync ("conferences").ConfigureAwait(false);
+        if (response.IsSuccessStatusCode) {
+          var json = await response.Content.ReadAsStringAsync ().ConfigureAwait(false);
+          if (!string.IsNullOrWhiteSpace (json)) {
+            conferenceDtos = await Task.Run (() => 
+              JsonConvert.DeserializeObject<IEnumerable<ConferenceDto>>(json)
+            ).ConfigureAwait(false);
 
-						conferences = await Task.Run(() => 
-							Mapper.Map<IEnumerable<Conference>> (conferenceDtos)
-						).ConfigureAwait(false);
-					}
-				}
-			}
+            conferences = await Task.Run(() => 
+              Mapper.Map<IEnumerable<Conference>> (conferenceDtos)
+            ).ConfigureAwait(false);
+          }
+        }
+      }
 
-			return conferences.ToList();
-		}
+      return conferences.ToList();
+    }
 
-		private const string ApiBaseAddress = "http://api.tekconf.com/v1/";
-		private HttpClient CreateClient ()
-		{
-			var httpClient = new HttpClient 
-			{ 
-				BaseAddress = new Uri(ApiBaseAddress)
-			};
+    private const string ApiBaseAddress = "http://api.tekconf.com/v1/";
+    private HttpClient CreateClient ()
+    {
+      var httpClient = new HttpClient 
+      { 
+        BaseAddress = new Uri(ApiBaseAddress)
+      };
 
-			httpClient.DefaultRequestHeaders.Accept.Clear();
-			httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+      httpClient.DefaultRequestHeaders.Accept.Clear();
+      httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-			return httpClient;
-		}
-	}
+      return httpClient;
+    }
+  }
 }
 ```
 
@@ -107,11 +107,11 @@ In our case, the interface will look like this:
 [Headers("Accept: application/json")]
 public interface ITekConfApi
 {
-	[Get("/conferences")]
-	Task<List<ConferenceDto>> GetConferences();
+  [Get("/conferences")]
+  Task<List<ConferenceDto>> GetConferences();
 
-	[Get("/conferences/{slug}")]
-	Task<ConferenceDto> GetConference(string slug);
+  [Get("/conferences/{slug}")]
+  Task<ConferenceDto> GetConference(string slug);
 }
 ```
 
@@ -191,10 +191,10 @@ From the user's perspective, not every network request is equal. Requests that a
 ```csharp
 public class ApiService : IApiService
 {
-	public const string ApiBaseAddress = "http://api.tekconf.com/v1";
+  public const string ApiBaseAddress = "http://api.tekconf.com/v1";
 
-	public ApiService(string apiBaseAddress = null)
-	{
+  public ApiService(string apiBaseAddress = null)
+  {
         Func<HttpMessageHandler, ITekConfApi> createClient = messageHandler =>
         {
             var client = new HttpClient(messageHandler)
@@ -206,33 +206,33 @@ public class ApiService : IApiService
         };
 
         _background = new Lazy<ITekConfApi>(() => createClient(
-			new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.Background)));
-			
-		_userInitiated = new Lazy<ITekConfApi>(() => createClient(
-			new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.UserInitiated)));
+      new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.Background)));
+      
+    _userInitiated = new Lazy<ITekConfApi>(() => createClient(
+      new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.UserInitiated)));
 
-		_speculative = new Lazy<ITekConfApi>(() => createClient(
-			new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.Speculative)));
-	}
+    _speculative = new Lazy<ITekConfApi>(() => createClient(
+      new RateLimitedHttpMessageHandler(new NativeMessageHandler(), Priority.Speculative)));
+  }
 
-	private readonly Lazy<ITekConfApi> _background;
-	private readonly Lazy<ITekConfApi> _userInitiated;
-	private readonly Lazy<ITekConfApi> _speculative;
+  private readonly Lazy<ITekConfApi> _background;
+  private readonly Lazy<ITekConfApi> _userInitiated;
+  private readonly Lazy<ITekConfApi> _speculative;
 
-	public ITekConfApi Background
-	{
-		get { return _background.Value; }
-	}
+  public ITekConfApi Background
+  {
+    get { return _background.Value; }
+  }
 
-	public ITekConfApi UserInitiated
-	{
-		get { return _userInitiated.Value; }
-	}
+  public ITekConfApi UserInitiated
+  {
+    get { return _userInitiated.Value; }
+  }
 
-	public ITekConfApi Speculative
-	{
-		get { return _speculative.Value; }
-	}
+  public ITekConfApi Speculative
+  {
+    get { return _speculative.Value; }
+  }
 }
 ```
 
