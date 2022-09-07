@@ -56,7 +56,7 @@ The last task that we need to do is to change the XAML and the C# that was gener
 
 All we need in the *MainPage.xaml* file is the following XAML.
 
-```markup
+```xml
 <phone:PhoneApplicationPage
     x:Class="SuperSuccessfulApp.WinPhone.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
