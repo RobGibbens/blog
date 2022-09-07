@@ -9,7 +9,7 @@ Xamarin.Forms ships with a built-in [https://docs.microsoft.com/en-us/previous-v
 
 Consider a typical cross platform view model class :
 
-```language-csharp
+```csharp
 public class MainViewModel
 {
     public string Data { get; set; }
@@ -23,7 +23,7 @@ public class MainViewModel
 
 If we wanted to write a unit test for this, it might look like this :
 
-```language-csharp
+```csharp
 [TestFixture]
 public class TestMainViewModel
 {
@@ -60,7 +60,7 @@ If we really want to continue using the Service Locator pattern, but we also wan
 
 To begin with, we need to create a Service Locator interface in our shared code project. Notice that this simply provides a way for our shared code to request an object based on a generic key. There is no reference or dependency to Xamarin.Forms at all.
 
-```language-csharp
+```csharp
 public interface IDependencyService
 {
     T Get<T>() where T : class;
@@ -69,7 +69,7 @@ public interface IDependencyService
 
 Next, we will change our `MainViewModel` to take in an implementation of the `IDependencyService` as a parameter. There are now two constructors for the `MainViewModel`. In the normal case of running our app, we will instantiate and use a new `DependencyServiceWrapper()` object _(see below)_, which will continue to use Xamarin.Forms' `DependencyService` object internally. The second constructor allows us to pass in any object that implements the `IDependencyService` interface, including mocking or stubbing it out for unit testing purposes.
 
-```language-csharp
+```csharp
 public class MainViewModel
 {
     private readonly IDependencyService _dependencyService;
@@ -94,7 +94,7 @@ public class MainViewModel
 
 The `DependencyServiceWrapper` class will simply delegate its calls to Xamarin.Forms' built-in `DependencyService`, giving us the same behavior as before while running the app on a host.
 
-```language-csharp
+```csharp
 public class DependencyServiceWrapper : IDependencyService
 {
     public T Get<T> () where T : class
@@ -107,7 +107,7 @@ public class DependencyServiceWrapper : IDependencyService
 
 While unit testing, we can create a simple implementation of the interface to use. In this case, we're just going to use a `Dictionary<Type, object>` to store the implementations. Even though the `IDependencyService` interface only defined a `Get()` method, the stub implementation also provides a `Register()` method. Using the stub means that we never use the `DependencyService` class, and therefore never have to call `Xamarin.Forms.Init()` during a unit test.
 
-```language-csharp
+```csharp
 public class DependencyServiceStub : IDependencyService
 {
     privet readonly Dictionary<Type, object> registeredServices = new Dictionary<Type, object>();
@@ -126,7 +126,7 @@ public class DependencyServiceStub : IDependencyService
 
 Finally, we can update our unit test to use the new `DependencyServiceStub`.
 
-```language-csharp
+```csharp
 [TestFixture]
 public class TestMainViewModel
 {

@@ -17,7 +17,7 @@ We take our devices with us everywhere. We have them at home, at work, and on va
 
 When we first start writing our Xamarin apps, we probably take the easiest approach in writing our networking code. Maybe we just use Microsoft's HttpClient library to make a call, and then Json.net to deserialize the resulting json. Maybe we go a step further and include some additional libraries as well. You can see this approach in my previous post [End to End Mvvm with Xamarin](http://arteksoftware.com/end-to-end-mvvm-with-xamarin/) where I show a simple implementation of a service client.
 
-```language-csharp
+```csharp
 namespace DtoToVM.Services
 {
 	using System;
@@ -103,7 +103,7 @@ The first thing that we're going to need is a way to access our services. We **c
 
 In our case, the interface will look like this:
 
-```language-csharp
+```csharp
 [Headers("Accept: application/json")]
 public interface ITekConfApi
 {
@@ -119,7 +119,7 @@ Here we are declaring that our remote api will return json, and there are two "m
 
 Once we have the interface defined, using it is as easy as this:
 
-```language-csharp
+```csharp
 var tekconfApi = RestService.For<ITekConfApi>("http://api.tekconf.com/v1");
 
 var conferences = await tekconfApi.GetConferences();
@@ -140,7 +140,7 @@ While we could possibly write all of this caching logic ourselves, we will inste
 
 > Akavache is an asynchronous, persistent (i.e. writes to disk) key-value store created for writing desktop and mobile applications in C#, based on SQLite3. Akavache is great for both storing important data (i.e. user settings) as well as cached local data that expires.
 
-```language-csharp
+```csharp
 public async Task<List<ConferenceDto>> GetConferences()
 {
     var cache = BlobCache.LocalMachine;
@@ -165,7 +165,7 @@ Although we'd like to always get our data from the cache, we will of course stil
 
 >This library brings the latest platform-specific networking libraries to Xamarin applications via a custom HttpClient handler. Write your app using System.Net.Http, but drop this library in and it will go drastically faster.
 
-```language-csharp
+```csharp
 var client = new HttpClient(new NativeMessageHandler())
 {
     BaseAddress = new Uri(apiBaseAddress)
@@ -188,7 +188,7 @@ From the user's perspective, not every network request is equal. Requests that a
 > - Request Prioritization
 > - Speculative requests
 
-```language-csharp
+```csharp
 public class ApiService : IApiService
 {
 	public const string ApiBaseAddress = "http://api.tekconf.com/v1";
@@ -240,7 +240,7 @@ Now, instead of just using the HttpClient, we have an *ApiService* class which w
 
 When the page first loads, we will automatically try to get the conference data. Because the user did not initiate this call, we can prioritize this request to run in the background.
 
-```language-csharp
+```csharp
 var conferences = await _conferencesService
                         .GetConferences(Priority.Background)
                         .ConfigureAwait(false);
@@ -248,7 +248,7 @@ var conferences = await _conferencesService
 
 If the user chooses to click the refresh button, then we could run this same call with a different priority.
 
-```language-csharp
+```csharp
 var conferences = await _conferencesService
                         .GetConferences(Priority.UserInitiated)
                         .ConfigureAwait(false);
@@ -256,7 +256,7 @@ var conferences = await _conferencesService
 
 When the conferences return, we might assume that the user will probably click on one of the conferences in the list to see the details of that conference. Since we are just guessing that this might occur, we can schedule a request to get the conference details using the speculative priority.
 
-```language-csharp
+```csharp
 foreach (var slug in conferences.Select(x => x.Slug))
 {
     _conferencesService.GetConference(Priority.Speculative, slug);
@@ -278,7 +278,7 @@ If we want to make sure that we don't cause an exception by making a request whe
 
 Before making a network request, we can just check if the device is connected.
 
-```language-csharp
+```csharp
 if (CrossConnectivity.Current.IsConnected)
 {
     conferences = await _apiService.Background.GetConferences();
@@ -301,7 +301,7 @@ In a perfect world, our code would work correctly all the time, every time. It's
 
 Polly allows us to very easily handle these types of errors in a consistent and coherent fashion. In this example, we will try connecting to our service five times, with an exponential wait of 2, 4, 8, 16, and 32 seconds between tries. This should give the device a chance to reestablish its network connection and continue the request to the api.
 
-```language-csharp
+```csharp
 conferences = await Policy
       .Handle<WebException>()
       .WaitAndRetry

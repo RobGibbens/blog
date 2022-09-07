@@ -9,9 +9,9 @@ date: 2015-01-05
 
 One thing that bothers me with Mvvm is the amount of boilerplate code that is required to implement the [INotifyPropertyChanged interface](http://msdn.microsoft.com/en-us/library/system.componentmodel.inotifypropertychanged.aspx), which powers our databinding engine.
 
-#### INotifyPropertyChanged Implementation ####
+#### INotifyPropertyChanged Implementation
 
-```language-csharp
+```csharp
     using System.Runtime.CompilerServices;
 	using System.ComponentModel;
 	
@@ -56,9 +56,9 @@ One thing that bothers me with Mvvm is the amount of boilerplate code that is re
 
 That's a lot of boilerplate cluttering up our code, making it harder to read and understand what this class is really trying to accomplish. The code required by the notification/databinding engine isn't adding any value to our view model and it isn't related to our application or our business logic. Ideally, we'd like to remove that boilerplate code and focus on our app.  
 
-#### Clean ViewModel with Auto Properties ####
+#### Clean ViewModel with Auto Properties
 
-```language-csharp
+```csharp
     public class UserViewModel
     {
         public string FirstName { get; set; }
@@ -68,9 +68,9 @@ That's a lot of boilerplate cluttering up our code, making it harder to read and
 
 Luckily, there is an amazing library named [Fody.PropertyChanged](https://github.com/Fody/PropertyChanged) that we can leverage that will allow us to write only the code that we need, but rewrite the resulting assembly to implement INotifyPropertyChanged for us. All we need to do is add the [PropertyChanged.Fody Nuget Package](http://www.nuget.org/packages/PropertyChanged.Fody/) to our project, and add an attribute to our ViewModel.
 
-### ViewModel + Fody.PropertyChanged ###
+### ViewModel + Fody.PropertyChanged
 
-```language-csharp
+```csharp
     using PropertyChanged;
 
 	[ImplementPropertyChanged]
@@ -91,7 +91,7 @@ Out of the box, this all works just fine using Visual Studio on Windows. There a
 - The Nuget package adds a FodyWeavers.xml file to the project, but leaves it empty
     - Add &lt;PropertyChanged /&gt; to FodyWeavers.xml
     
-```language-markup
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <Weavers>
     <PropertyChanged />
@@ -104,9 +104,9 @@ Out of the box, this all works just fine using Visual Studio on Windows. There a
 
 Viewing the resulting assembly in Xamarin Studio's Show Disassembly window gives the follwing result
 
-### Disassembled Code with Fody ####
+### Disassembled Code with Fody
 
-```language-csharp
+```csharp
     using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;

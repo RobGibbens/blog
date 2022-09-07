@@ -9,7 +9,7 @@ I like to keep my view models focused on just the code needed for a particular v
 
 The most straight forward way to access our view model would be to simply instantiate it in the constructor of our view.
 
-<pre><code class="language-csharp">using Xamarin.Forms;
+<pre><code class="csharp">using Xamarin.Forms;
 
 namespace CleanViewModels
 {	
@@ -28,11 +28,11 @@ namespace CleanViewModels
 
 This technique requires us to add this bit of code to every view that uses a view model though. I'd prefer to have that handled automatically for each view.
 
-###View Model###
+### View Model
 
 Let's begin by creating a marker interface for our view model. At its simplest, this interface is just used to constrain the generic type later.
 
-```language-csharp
+```csharp
 namespace CleanViewModels
 {
     public interface IViewModel {}
@@ -41,7 +41,8 @@ namespace CleanViewModels
 
 Each of our view models will need to implement our marker interface.
 
-<pre><code class="language-csharp">using PropertyChanged;
+```csharp
+using PropertyChanged;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -63,14 +64,15 @@ namespace CleanViewModels
 		}
 	}
 }
-</code></pre>
+```
 
 
-###View Page###
+### View Page
 
 Now that we have the **ViewModel** defined, we can wire it up to the View. We'll create a new class, named *ViewPage.cs*. This will be our base class for each view.  We will derive **ViewPage** from **ContentPage** and pass in the type of our view model. In the constructor, we will create a new instance of the requested **ViewModel** and set the view's BindingContext to the current **ViewModel**. We also provide a read only property to be able to access the view model in the page, if needed.
 
-<pre><code class="language-csharp">using Xamarin.Forms;
+```csharp
+using Xamarin.Forms;
 
 namespace CleanViewModels
 {
@@ -92,13 +94,14 @@ namespace CleanViewModels
 		}
 	}
 }
-</code></pre>
+```
 
-###View###
+### View
 
 When using XAML in Xamarin.Forms, I was not able to set the root to use **ViewPage&lt;T&gt;** directly. Instead, we will create a wrapper class that defines the <T> parameter for us, so that we can use the wrapper class in XAML.
 
-<pre><code class="language-csharp">namespace CleanViewModels
+```csharp
+namespace CleanViewModels
 {	
 	public class UserPageBase :  ViewPage&lt;UserViewModel&gt; {}
 
@@ -110,11 +113,11 @@ When using XAML in Xamarin.Forms, I was not able to set the root to use **ViewPa
 		}
 	}
 }
-</code></pre>
+```
 
 Once the code behind is defined, we can add our xml namespace **local:** and create our view in XAML as **UserPageBase**
 
-```language-markup
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <local:UserPageBase 
 	xmlns="http://xamarin.com/schemas/2014/forms" 
@@ -138,7 +141,7 @@ Once the code behind is defined, we can add our xml namespace **local:** and cre
 	      Text="Load User"
 	      Command="{Binding LoadUser}"></Button>
     </StackLayout>
-</local:UserPageBase>	
+</local:UserPageBase>
 ```
 
 By using a base view page, along with Fody, we are able to keep our view models clean and focused only on the properties and commands that are needed for the view, thereby increasing the readability of the code.

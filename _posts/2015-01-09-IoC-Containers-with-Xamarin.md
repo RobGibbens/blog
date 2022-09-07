@@ -21,169 +21,185 @@ The libraries that I focused on were [Autofac](http://www.nuget.org/packages/Aut
 
 All of the code is available from my [Github Repo](https://github.com/RobGibbens/Xamarin.IoC)
 
-##Sample Project##
+## Sample Project
 
 In the sample project, we have a single IoCDemo.Core project. This project contains the interface abstractions for our platform specific projects (ISettings and IPlatform) and a concrete ViewModel (MainViewModel) which takes the two interfaces as constructor dependencies. For each library, I created an iOS and an Android project to demonstrate wiring up the dependencies to platform specific implementations and creating the view model. Each container will be wired up in an App.cs file in each platform.
 
 > Some of the IoC containers have the ability to scan your assemblies and automatically wire up your dependecies. I chose **not** to use this ability. In a mobile app, every bit of cpu power is precious. I would rather spend the extra few seconds to write the code to wire up the dependency once at development time than have the app scan the assemblies every single time it is started.
 
-###Autofac###
-> Install-Package Autofac
-####Wiring up the container####
+### Autofac
 
-```language-csharp
+> Install-Package Autofac
+
+#### Wiring up the Autofac container
+
+```csharp
 using Autofac;
 using IoCDemo.Core;
 
 namespace AutoFacDemo.iOS
 {
-	public class App
-	{
-		public static IContainer Container { get; set; }
+    public class App
+    {
+        public static IContainer Container { get; set; }
 
-		public static void Initialize()
-		{
-			var builder = new ContainerBuilder();
+        public static void Initialize()
+        {
+            var builder = new ContainerBuilder();
 
-			builder.RegisterInstance(new ApplePlatform()).As<IPlatform>();
-			builder.RegisterInstance(new AppleSettings()).As<ISettings>();
-			builder.RegisterType<MainViewModel> ();
+            builder.RegisterInstance(new ApplePlatform()).As<IPlatform>();
+            builder.RegisterInstance(new AppleSettings()).As<ISettings>();
+            builder.RegisterType<MainViewModel> ();
 
-			App.Container = builder.Build ();
-		}
-	}
+            App.Container = builder.Build ();
+        }
+    }
 }
 ```
 
-####Resolving the view model####
+#### Resolving the Autofac view model
 
-```language-csharp
+```csharp
 MainViewModel viewModel = null;
 
 using (var scope = App.Container.BeginLifetimeScope ()) {
-	viewModel = App.Container.Resolve<MainViewModel> ();
+    viewModel = App.Container.Resolve<MainViewModel> ();
 }
 ```
-{<1>}![](/content/images/2014/Jul/Autofac.png)
 
-###MvvmCross###
+![Autofac](/blog/docs/assets/Autofac.png)
+
+### MvvmCross
+
 > Install-Package MvvmCross.HotTuna.CrossCore
-####Wiring up the container####
 
-```language-csharp
+#### Wiring up the MvvmCross container
+
+```csharp
 using Cirrious.CrossCore;
 using IoCDemo.Core;
 using Cirrious.CrossCore.IoC;
 
 namespace MvvmCrossDemo.iOS
 {
-	public static class App
-	{
-		public static void Initialize ()
-		{
-			MvxSimpleIoCContainer.Initialize ();
-			Mvx.RegisterType<IPlatform, ApplePlatform> ();
-			Mvx.RegisterType<ISettings, AppleSettings> ();
-		}
-	}
+    public static class App
+    {
+        public static void Initialize ()
+        {
+            MvxSimpleIoCContainer.Initialize ();
+            Mvx.RegisterType<IPlatform, ApplePlatform> ();
+            Mvx.RegisterType<ISettings, AppleSettings> ();
+        }
+    }
 }
 ```
 
-####Resolving the view model###
+#### Resolving the MvvmCross view model
 
-```language-csharp
+```csharp
 var viewModel = Mvx.IocConstruct<MainViewModel> ();
 ```
-{<2>}![](/content/images/2014/Jul/MvvmCross.png)
 
-###Ninject###
+![MvvmCross](/blog/docs/assets/MvvmCross.png)
+
+### Ninject
+
 > Install-Package Portable.Ninject
-####Wiring up the container####
-```language-csharp
+
+#### Wiring up the Ninject container
+
+```csharp
 using Ninject;
 
 namespace NinjectDemo.iOS
 {
-	public static class App
-	{
-		public static StandardKernel Container { get; set; }
+    public static class App
+    {
+        public static StandardKernel Container { get; set; }
 
-		public static void Initialize()
-		{
-			var kernel = new Ninject.StandardKernel(new NinjectDemoModule());			
-			
-			App.Container = kernel;
-		}
-	}
+        public static void Initialize()
+        {
+            var kernel = new Ninject.StandardKernel(new NinjectDemoModule());            
+            
+            App.Container = kernel;
+        }
+    }
 }
 ```
 
-####Resolving the view model###
+#### Resolving the Ninject view model
 
-```language-csharp
+```csharp
 var viewModel = App.Container.Get<MainViewModel> ();
 ```
-{<3>}![](/content/images/2014/Aug/Ninject.png)
 
-###TinyIoc###
+![Ninject](/blog/docs/assets/Ninject.png)
+
+### TinyIoc
+
 > Install-Package TinyIoc
-####Wiring up the container####
 
-```language-csharp
+#### Wiring up the TinyIoc container
+
+```csharp
 using TinyIoC;
 using IoCDemo.Core;
 
 namespace TinyIoCDemo.iOS
 {
-	public static class App
-	{
-		public static void Initialize ()
-		{
-			var container = TinyIoCContainer.Current;
+    public static class App
+    {
+        public static void Initialize ()
+        {
+            var container = TinyIoCContainer.Current;
 
-			container.Register<IPlatform, ApplePlatform> ();
-			container.Register<ISettings, AppleSettings> ();
-		}
-	}
+            container.Register<IPlatform, ApplePlatform> ();
+            container.Register<ISettings, AppleSettings> ();
+        }
+    }
 }
 ```
 
-####Resolving the view model###
+#### Resolving the TinyIoc view model
 
-```language-csharp
+```csharp
 var viewModel = TinyIoC.TinyIoCContainer.Current.Resolve<MainViewModel> ();
 ```
-{<4>}![](/content/images/2014/Jul/TinyIoC.png)
 
-###Unity###
+![TinyIoc](/blog/docs/assets/TinyIoC.png)
+
+### Unity
+
 > Install-Package Unity
-####Wiring up the container####
 
-```language-csharp
+#### Wiring up the Unity container
+
+```csharp
 using Microsoft.Practices.Unity;
 using IoCDemo.Core;
 
 namespace UnityDemo.iOS
 {
-	public class App
-	{
-		public static UnityContainer Container { get; set; }
+    public class App
+    {
+        public static UnityContainer Container { get; set; }
 
-		public static void Initialize()
-		{
-			App.Container = new UnityContainer();
-			App.Container.RegisterType<IPlatform, ApplePlatform> ();
-			App.Container.RegisterType<ISettings, AppleSettings> ();
-		}
-	}
+        public static void Initialize()
+        {
+            App.Container = new UnityContainer();
+            App.Container.RegisterType<IPlatform, ApplePlatform> ();
+            App.Container.RegisterType<ISettings, AppleSettings> ();
+        }
+    }
 }
 ```
 
-####Resolving the view model###
+#### Resolving the Unity view model
 
-```language-csharp
+```csharp
 var viewModel = App.Container.Resolve (typeof(MainViewModel), "mainViewModel") as MainViewModel;
 ```
-{<5>}![](/content/images/2014/Jul/Unity.png)
+
+![Unity](/blog/docs/assets/Unity.png)
 
 Again, checkout the sample app on my [Github repo](https://github.com/RobGibbens/Xamarin.IoC) to compare our IoC container choices for Xamarin.
