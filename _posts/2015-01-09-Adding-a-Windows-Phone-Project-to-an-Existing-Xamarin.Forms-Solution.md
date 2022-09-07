@@ -15,23 +15,23 @@ Xamarin Studio does not support Windows Phone projects, so in order to create a 
 
 At this point, we will only have iOS and Android projects so the first step is to add a Windows Phone project. 
 
-![Initial solution explorer](assets/InitialSolutionExplorer.PNG)
+![Initial solution explorer](/blog/docs/assets/InitialSolutionExplorer.PNG)
 
 Right click on the solution and choose **Add New Project**. From the dialog, choose Visual C# -> Store Apps -> Windows Phone Apps -> **Blank App (Windows Phone Silverlight)**
 
-![Add new project](images/AddNewProject.PNG)
+![Add new project](/blog/docs/assets/AddNewProject.PNG)
 
 Create the project in the existing solution folder, and give the project the extension *.WinPhone* (this is optional, but adheres to what the Xamarin.Forms wizard would have created).
 
-![Project name](images/ProjectName.PNG)
+![Project name](/blog/docs/assets/ProjectName.PNG)
 
 Next, we'll get a wizard dialog asking which version of the Windows Phone SDK we want to use. The Xamarin.Forms wizard creates a Windows Phone 8.0 project, so we'll choose that same version here.
 
-![Target version](images/TargetVersion.PNG)
+![Target version](/blog/docs/assets/TargetVersion.PNG)
 
 This will create the Windows Phone project for us and add it to the solution.
 
-![New solution explorer](images/NewSolutionExplorer.PNG)
+![New solution explorer](/blog/docs/assets/NewSolutionExplorer.PNG)
 
 #### Add Xamarin.Forms
 
@@ -39,13 +39,13 @@ Now that the project is created, all we need to do is connect the Windows Phone 
 
 > Install-Package Xamarin.Forms
 
-![Nuget](images/Nuget.PNG)
+![Nuget](/blog/docs/assets/Nuget.PNG)
 
-![Content copy always](images/ContentCopyAlways.PNG)
+![Content copy always](/blog/docs/assets/ContentCopyAlways.PNG)
 
 Next, we need to add a reference to our shared code project, which will be either a PCL or a Shared Project. This will allow us to access all of the Xamarin.Forms UI that we have already created.
 
-![Add reference](images/AddReference.PNG)
+![Add reference](/blog/docs/assets/AddReference.PNG)
 
 #### Edit MainPage.xaml
 
