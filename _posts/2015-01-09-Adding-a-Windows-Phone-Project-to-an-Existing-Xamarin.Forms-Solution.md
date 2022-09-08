@@ -86,13 +86,13 @@ namespace SuperSuccessfulApp.WinPhone
 {
   public partial class MainPage : PhoneApplicationPage
   {
-  public MainPage()
-  {
-    InitializeComponent();
+    public MainPage()
+    {
+      InitializeComponent();
 
-    Forms.Init();
-    Content = SuperSuccessfulApp.App.GetMainPage().ConvertPageToUIElement(this);
-  }
+      Forms.Init();
+      Content = SuperSuccessfulApp.App.GetMainPage().ConvertPageToUIElement(this);
+    }
   }
 }
 ```
