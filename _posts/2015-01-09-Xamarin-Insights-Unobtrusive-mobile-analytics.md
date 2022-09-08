@@ -153,4 +153,4 @@ This may seem like a lot of extra overhead, especially since we're calling out t
 
 The end result of this is that we get really detailed tracking of the events that lead to an exception. This will make finding and fixing errors in our apps faster and more efficient.  We get the details of constant tracking without littering our code with tracking calls.
 
-![Insights Events]/blog/docs/assets/Insights-Events.png)
+![Insights Events](/blog/docs/assets/Insights-Events.png)
