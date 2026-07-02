@@ -13,17 +13,17 @@ In [Xamarin University](http://xamarin.com/university), we have a few in depth c
 
 One of the most common questions we hear is “How can we run these background tasks in a Xamarin.Forms app?” One of the best features of the Xamarin platform, and Xamarin.Forms specifically, is the ability to share large chunks of our code across platforms. This is often true in the case of background tasks as well. The function that we want to execute, such as saving data or calling a web service, is going to be the same on both iOS and Android. Unfortunately, the way that these two platforms have evolved to handle executing background code is completely different. As such, there is no way that we can abstract the backgrounding feature into the Xamarin.Forms library. Instead, we going to continue to rely on the native APIs to execute our shared background task.
 
-![Not the same](/blog/docs/assets/NotTheSame.png)
+![Not the same](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/NotTheSame.png)
 
 We could try to abstract this functionality with interfaces and dependency injection, but the platforms are so different that this won't work well. Instead, we'll turn to some features built into Xamarin.Forms to help us achieve these goals and create robust apps. The Xamarin.Forms framework has two feature built in to it that are going to help us here. The first is a simple way to quickly persist some data, called the [Properties Dictionary](https://developer.xamarin.com/guides/cross-platform/xamarin-forms/working-with/app-lifecycle/#Properties_Dictionary). The second feature, called [MessagingCenter](https://developer.xamarin.com/guides/cross-platform/xamarin-forms/messaging-center/) will allow our shared code to communicate with each platform in a loosely coupled way. We’ll use this feature to build our UI in Xamarin.Forms, and then send a message to the iOS and Android apps to kick off a background task in each platform’s specific way, using its platform specific API.
 
-![Messaging Center](/blog/docs/assets/MessagingCenter.gif)
+![Messaging Center](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/MessagingCenter.gif)
 
 The platform project will be able to execute its background apis, and then call into our shared code to actually execute the shared task.
 
 As the background task is running, we will also want to send messages from the platform projects BACK to the shared Xamarin.Forms code in order to provide status notification and update the Xamarin.Forms UI.
 
-![Messaging Center](/blog/docs/assets/MessagingCenter2.gif)
+![Messaging Center](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/MessagingCenter2.gif)
 
 > Sample code is available at my [Github repo](https://github.com/RobGibbens/XamarinFormsBackgrounding)
 

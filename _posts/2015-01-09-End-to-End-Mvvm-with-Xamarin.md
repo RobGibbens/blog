@@ -17,7 +17,7 @@ Start by creating a new solution.  We'll be using the "Blank App (Xamarin.Forms 
 
 > File -> New Solution -> Blank App (Xamarin.Forms Portable)
 
-![Solution structure](/blog/docs/assets/SolutionStructure.png)
+![Solution structure](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SolutionStructure.png)
 
 ### Remote Third Party API (JSON)
 
@@ -500,7 +500,7 @@ namespace DtoToVM.Pages
 }
 ```
 
-![Apps](/blog/docs/assets/Apps.png)
+![Apps](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/Apps.png)
 
 In just a few lines of code we were able to create a fully native app for three different platforms. We leveraged the wealth of fantastic open source PCL libraries available on Nuget to quickly connect to a remote service, download json data, convert it to a model for our app, and save it to a local database. We then wired everything up and bound the data to our UI.
 

@@ -24,7 +24,7 @@ Other times though, we will want to ship a prepopulated database with the applic
 
 ## Create SQLite database
 
-![Create SQL Schema](/blog/docs/assets/SqlSchema.png)
+![Create SQL Schema](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SqlSchema.png)
 
 We can create a Sqlite database file using a variety of tools on both Mac and Windows. I use [DB Browser for SQLite](http://sqlitebrowser.org/), a cross platform tool which will allow us to create the database, define the schema, and add records to the database. For this example, we'll be creating a file named "**people.db3**".
 
@@ -52,19 +52,19 @@ Once we have created the database on our desktop, we need to include it with eac
 
 For iOS, we will link the db3 file into the Resources folder. Be sure to set the Build Action to **BundleResource**.
 
-![Link database file to iOS](/blog/docs/assets/IncludeIOSDb-1.png)
+![Link database file to iOS](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/IncludeIOSDb-1.png)
 
 ### Android
 
 On Android, we will link the db3 file into the Assets folder, and set the Build Action to **AndroidAsset**.
 
-![Link database file to Android](/blog/docs/assets/IncludeAndroidDb.png)
+![Link database file to Android](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/IncludeAndroidDb.png)
 
 ### Windows Phone 8
 
 Windows Phone will link the database file into the root of the project, and set the Build Action as **Content**.
 
-![Link database file to Windows Phone 8](/blog/docs/assets/IncludeWP8Db.png)
+![Link database file to Windows Phone 8](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/IncludeWP8Db.png)
 
 ## Copy the database file
 
@@ -223,7 +223,7 @@ public class FileAccessHelper
 
 By including our prepopulated database with our app, we have the ability to give our users a better first run experience and minimize the amount of work that the app needs to do to be able to run for the first time.
 
-![Included data](/blog/docs/assets/iOSDB.png)
+![Included data](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/iOSDB.png)
 
 ## Source Code
 

@@ -39,4 +39,4 @@ alias iPhone6="ios-sim start --devicetypeid com.apple.CoreSimulator.SimDeviceTyp
 
 Now, launching a simulator is as easy as typing **iPhone6Plus**
 
-![](/blog/docs/assets/bash.png)
+![](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/bash.png)

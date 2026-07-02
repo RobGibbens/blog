@@ -36,13 +36,13 @@ At this point, we have not used a designer for any of our UI. In fact, we don't 
 
 > Add -> New File -> iOS -> iPhone Table View Cell
 
-![iPhoneTableViewCell](/blog/docs/assets/iPhoneTableViewCell.png)
+![iPhoneTableViewCell](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/iPhoneTableViewCell.png)
 
 Xamarin Studio does not support designing _.xib_ files, but double clicking on the file will open it in Xcode and allow us to design the cell.
 
 As we drag our controls on to the design surface, we have to make sure that we wire up the **Outlet** in the header file. In Xcode, we do this by ctrl-click-dragging the control into the header file. Without the Outlets, we wouldn't be able to access the controls in our C# code.
 
-![xcode](/blog/docs/assets/xcode.png)
+![xcode](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/xcode.png)
 
 Save the _.xib_ and quit Xcode. Xamarin Studio will detect the change, and update the _MyCustomCell.designer.cs_ file with the new Outlets.
 
@@ -127,6 +127,6 @@ public override UITableViewCell GetCell (UITableView tableView, NSIndexPath inde
 }
 ```
 
-![CustomTableViewCells](/blog/docs/assets/CustomTableViewCells-1.png)
+![CustomTableViewCells](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/CustomTableViewCells-1.png)
 
 Checkout the sample app on my [Github repo](https://github.com/RobGibbens/XibTableCellDesign) for an example of designing a table view cell with Xamarin Studio and *.xib* files.

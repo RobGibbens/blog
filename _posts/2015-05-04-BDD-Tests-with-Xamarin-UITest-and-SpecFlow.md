@@ -42,7 +42,7 @@ Feature: Adding a task
 
 Unlike unit tests, these tests generally concentrate on exercising the full running application. In our case, this will mean running an iOS or Android application on a simulator/emulator or on a physical device.
 
-![Test](/blog/docs/assets/Test.gif)
+![Test](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/Test.gif)
 
 ## Cucumber and Calabash
 
@@ -75,7 +75,7 @@ We can combine SpecFlow and Xamarin.UITest to give us all the benefits of BDD an
 
 SpecFlow has a [Visual Studio extension](https://visualstudiogallery.msdn.microsoft.com/90ac3587-7466-4155-b591-2cd4cc4401bc) available which adds some templates and integration with the VS IDE. In Xamarin Studio, there is a [SpecFlow addin](https://github.com/mikeyjones/SpecFlow) available. The template will be installed in **Other > Miscellaneous > General > SpecFlow NUnit Library Project**
 
-![New Project](/blog/docs/assets/NewProject.png)
+![New Project](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/NewProject.png)
 
 This will create a new class library with the NUnit and SpecFlow Nuget packages already added. Be sure to update the Nuget packages when you first create the project.
 
@@ -83,11 +83,11 @@ This will create a new class library with the NUnit and SpecFlow Nuget packages 
 
 Next, we need to add the Xamarin.UITest Nuget package to the project.
 
-![Add UI Test](/blog/docs/assets/AddUITest.png)
+![Add UI Test](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/AddUITest.png)
 
 Once the Xamarin.UITest Nuget package has been added, the Unit Test window in Xamarin Studio will show a new section titled "Test Apps". We'll use this shortly.
 
-![Add tests](/blog/docs/assets/AddTests.png)
+![Add tests](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/AddTests.png)
 
 ## Cross platform tests
 
@@ -166,7 +166,7 @@ public static IApp StartApp (Platform platform, string iOSSimulator)
 
 Alternatively, as of Xamarin Studio 5.9, if we have the source code projects loaded in Xamarin Studio along with our test project, we can use the new Test Apps feature to point the test project at the source code project.
 
-![Add tests](/blog/docs/assets/AddTests-1.png)
+![Add tests](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/AddTests-1.png)
 
 Once the test project knows about the source projects, the configuration no longer needs the path specified, and we can remove the **ApkFile** and **AppBundle** methods.
 
@@ -190,7 +190,7 @@ public static IApp StartApp (Platform platform, string iOSSimulator)
 
 At this point, the test project is ready to start defining our features. The first feature for our TaskyPro application will be _Add a Task_. Features in SpecFlow are defined using a feature file. We can add one of these to our test project using the built in Xamarin Studio template.
 
-![Add a task](/blog/docs/assets/AddATask.png)
+![Add a task](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/AddATask.png)
 
 You can delete the contents of this file, and replace it with the business defined specification for our application.
 
@@ -397,18 +397,18 @@ You can read the code for this in the source project.
 
 ## Running the tests locally
 
-![LocalTests-small](/blog/docs/assets/LocalTests-small.gif)
+![LocalTests-small](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/LocalTests-small.gif)
 
 ## Xamarin Test Cloud
 
 Even better than running these tests on local simulators and emulators would be to run them on hundreds or thousands of real devices. The great thing about using Xamarin.UITest is the ability to upload these tests to [Xamarin Test Cloud](http://xamarin.com/test-cloud). Xamarin Studio makes this as simple as right-clicking on the tests in the Unit Tests pad, and choosing Run in Test Cloud.
 
-![RunInTestCloud-1](/blog/docs/assets/RunInTestCloud-1.png)
+![RunInTestCloud-1](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/RunInTestCloud-1.png)
 
 This will run all of the tests on either Android or iOS. You'll be able to see which tests pass or fail, the number of devices, OS versions, and a wealth of other information. We can even see the Gherkin steps in the Xamarin Test Cloud UI.
 
-![TestCloudOverview-1](/blog/docs/assets/TestCloudOverview-1.png)
+![TestCloudOverview-1](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/TestCloudOverview-1.png)
 
-![TestCloud details](/blog/docs/assets/TestCloudDetails.png)
+![TestCloud details](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/TestCloudDetails.png)
 
 Sample code is available at my [Github repo](https://github.com/RobGibbens/BddWithXamarinUITest)

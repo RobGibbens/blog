@@ -52,20 +52,20 @@ The other layouts include (with the controls available)
 - 1 ImageView (Android.Resource.Id.Icon)
 - 1 TextView (Android.Resource.Id.Text1)
 
-![ActivityListItem](/blog/docs/assets/ActivityListItem.png)
+![ActivityListItem](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/ActivityListItem.png)
   
 ### Android.Resource.Layout.SimpleListItem1
 
 - 1 TextView (Android.Resource.Id.Text1)
 
-![SimpleListItem1](/blog/docs/assets/SimpleListItem1.png)
+![SimpleListItem1](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItem1.png)
 
 ### Android.Resource.Layout.SimpleListItem2
 
 - 1 TextView/Title (Android.Resource.Id.Text1)
 - 1 TextView/Subtitle (Android.Resource.Id.Text2)
 
-![SimpleListItem2](/blog/docs/assets/SimpleListItem2.png)
+![SimpleListItem2](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItem2.png)
 
 ### Android.Resource.Layout.SimpleListItemActivated1
 
@@ -76,7 +76,7 @@ The other layouts include (with the controls available)
   this.ListView.ChoiceMode = ChoiceMode.Multiple;
 ```
 
-![SimpleListItemActivated1](/blog/docs/assets/SimpleListItemActivated1.png)
+![SimpleListItemActivated1](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItemActivated1.png)
 
 ### Android.Resource.Layout.SimpleListItemActivated2
 
@@ -88,7 +88,7 @@ The other layouts include (with the controls available)
   this.ListView.ChoiceMode = ChoiceMode.Multiple;
 ```
 
-![SimpleListItemActivated2](/blog/docs/assets/SimpleListItemActivated2.png)
+![SimpleListItemActivated2](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItemActivated2.png)
 
 ### Android.Resource.Layout.SimpleListItemChecked
 
@@ -99,7 +99,7 @@ The other layouts include (with the controls available)
   this.ListView.ChoiceMode = ChoiceMode.Multiple;
 ```
 
-![SimpleListItemChecked](/blog/docs/assets/SimpleListItemChecked.png)
+![SimpleListItemChecked](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItemChecked.png)
 
 ### Android.Resource.Layout.SimpleListItemMultipleChoice
 
@@ -110,7 +110,7 @@ The other layouts include (with the controls available)
   this.ListView.ChoiceMode = ChoiceMode.Multiple;
 ```
 
-![SimpleListItemMultipleChoice](/blog/docs/assets/SimpleListItemMultipleChoice.png)
+![SimpleListItemMultipleChoice](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItemMultipleChoice.png)
 
 ### Android.Resource.Layout.SimpleListItemSingleChoice
 
@@ -121,7 +121,7 @@ The other layouts include (with the controls available)
   this.ListView.ChoiceMode = ChoiceMode.Single;
 ```
 
-![SimpleListItemSingleChoice](/blog/docs/assets/SimpleListItemSingleChoice.png)
+![SimpleListItemSingleChoice](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/SimpleListItemSingleChoice.png)
 
 ### Android.Resource.Layout.TestListItem
 
@@ -134,6 +134,6 @@ The other layouts include (with the controls available)
 - 1 TextView/Title (Android.Resource.Id.Text1)
 - 1 TextView/Subtitle (Android.Resource.Id.Text2)
 
-![TwoLineListItem](/blog/docs/assets/TwoLineListItem.png)
+![TwoLineListItem](https://raw.githubusercontent.com/RobGibbens/blog/refs/heads/main/docs/assets/TwoLineListItem.png)
 
 Again, checkout the Xamarin.Android sample app on my [Github repo](http://github.com/RobGibbens/ListViewDemo) to see these list view layouts in action.
